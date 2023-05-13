@@ -1,0 +1,16 @@
+
+CREATE DATABASE productsdb;
+
+
+use productsdb;
+
+CREATE TABLE product (
+  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  price VARCHAR(100) NOT NULL,
+  stock VARCHAR(15) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  brand VARCHAR(255) NOT NULL,
+  
+);
+
