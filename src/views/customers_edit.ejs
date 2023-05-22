@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-5 offset-md-3 card bg-dark">
       <div class="card-body">
-        <form action="/update/<%= customer.id %>" method="POST">
+        <form action="/update/<%= customer.id %>" method="POST" enctype="multipart/form-data">
           <input
             type="text"
             name="name"
@@ -45,7 +45,17 @@
             class="form-control mb-3"
             autofocus
           />
-
+          <div>
+            <span>Current Image:</span>
+            <% if (customer.image) { %>
+            <img src="<%= customer.image %>" alt="Current Image" width="100">
+            <% } %>
+          </div>
+          <input
+            type="file"
+            name="image"
+            class="form-control-file mb-3"
+          />
           <button type="submit" class="btn btn-primary">save product</button>
         </form>
       </div>

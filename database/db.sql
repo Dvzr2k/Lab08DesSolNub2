@@ -13,4 +13,4 @@ CREATE TABLE product (
   brand VARCHAR(255) NOT NULL,
   
 );
-
+ALTER TABLE product ADD COLUMN image VARCHAR(255);

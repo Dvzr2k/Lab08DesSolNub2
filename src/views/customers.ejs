@@ -12,6 +12,9 @@
             <td>Stock</td>
             <td>Description</td>
             <td>Brand</td>
+            <td>Image</td>
+
+            
 
           </tr>
         </thead>
@@ -25,6 +28,12 @@
             <td><%= customers[i].stock %></td>
             <td><%= customers[i].description %></td>
             <td><%= customers[i].brand %></td>
+            <td>
+              <% if (customers[i].image) { %>
+              <img src="<%= customers[i].image %>" alt="Product Image" width="100">
+              <% } %>
+            </td>
+
             <td class="d-flex gap-2">
               <a href="/update/<%= customers[i].id %>" class="btn btn-info">
                 Edit
@@ -40,7 +49,7 @@
     </div>
     <div class="col-md-5  ms-3" >
       <div class="card-body">
-        <form action="/add" method="POST">
+        <form action="/add" method="POST" enctype="multipart/form-data">
           <input
             type="text"
             name="name"
@@ -72,6 +81,12 @@
             placeholder="Brand"
             class="form-control mb-2"
           />
+          <input
+            type="file"
+            name="image"
+            class="form-control-file mb-2"
+          />
+          
 
           <button type="submit" class="btn btn-info">save product</button>
         </form>
