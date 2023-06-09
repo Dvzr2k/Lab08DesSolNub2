@@ -66,15 +66,25 @@ export const createCustomers = async (req, res) => {
 };
 
 export const editCustomer = async (req, res) => {
-  const { id } = req.params;
-  const [result] = await pool.query("SELECT * FROM product  WHERE id = ?", [id]);
-  res.render("customers_edit", { customer: result[0] });
+const { id } = req.params;
+  const [result] = await pool.query("SELECT * FROM product WHERE id = ?", [id,]);
+  const customer = result[0]; // Obtén el primer objeto del arreglo result
+
+  res.render("customers_edit", { customer });
 };
 
 export const updateCustomer = async (req, res) => {
   const { id } = req.params;
   const { name, price, stock, description, brand } = req.body;
   const image = req.file ? req.file.location : ""; // Obtén la URL del objeto S3
+
+  console.log("ID:", id);
+  console.log("Name:", name);
+  console.log("Price:", price);
+  console.log("Stock:", stock);
+  console.log("Description:", description);
+  console.log("Brand:", brand);
+  console.log("Image:", image);
 
   const updatedCustomer = {
     name,
@@ -88,6 +98,7 @@ export const updateCustomer = async (req, res) => {
   await pool.query("UPDATE product SET ? WHERE id = ?", [updatedCustomer, id]);
 
   res.redirect("/");
+  console.log(req.body);
 };
 
 export const deleteCustomer = async (req, res) => {
